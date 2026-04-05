@@ -1,28 +1,37 @@
 // backend/routes/chat.js
 const express = require('express');
 const router = express.Router();
-const OpenAI = require('openai');
+const Groq = require('groq-sdk');
+require('dotenv').config();
 
-console.log("OPENAI_API_KEY:", process.env.OPENAI_API_KEY); // DEBUG: check if loaded
-
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY
+const groq = new Groq({
+  apiKey: process.env.GROQ_API_KEY
 });
 
 router.post('/', async (req, res) => {
-  const { message } = req.body;
+  const { message, language } = req.body;
 
   try {
-    const completion = await openai.chat.completions.create({
-      model: "gpt-3.5-turbo",
-      messages: [{ role: "user", content: message }]
+    const completion = await groq.chat.completions.create({
+     model: "llama-3.3-70b-versatile", // fast & free model
+      messages: [
+        {
+          role: "system",
+          content: `You are a helpful language tutor. Answer in a simple way and teach in ${language || 'English'}.`
+        },
+        {
+          role: "user",
+          content: message
+        }
+      ]
     });
 
     const reply = completion.choices[0].message.content;
     res.json({ reply });
+
   } catch (err) {
     console.error(err);
-    res.status(500).json({ error: 'OpenAI API error' });
+    res.status(500).json({ error: 'Groq API error' });
   }
 });
 

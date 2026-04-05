@@ -4,6 +4,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const pool = require('../db');
 
+
 // Register new user
 router.post('/register', async (req, res) => {
   const { username, email, password, avatar } = req.body;

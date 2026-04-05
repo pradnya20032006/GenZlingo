@@ -4,70 +4,446 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>GenZlingo</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
-body{background:linear-gradient(135deg,#0f172a,#1e293b);color:white;min-height:100vh;display:flex;flex-direction:column}
-header,footer{display:flex;justify-content:space-between;align-items:center;padding:15px 30px;background:rgba(0,0,0,0.4);backdrop-filter:blur(10px);flex-shrink:0}
-nav a{margin:0 15px;color:white;text-decoration:none;font-weight:500;cursor:pointer;transition:0.3s}
-nav a:hover{color:#38bdf8}
-button{background:linear-gradient(135deg,#38bdf8,#6366f1);border:none;padding:10px 18px;border-radius:10px;color:white;cursor:pointer;font-weight:500;transition:0.3s}
-button:hover{transform:scale(1.05)}
-.container{flex:1;padding:30px}
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Inter',sans-serif;
+}
+
+/* BACKGROUND */
+body{
+  background:linear-gradient(135deg,#fff1f5,#ffe4ec,#fce7f3);
+  color:#374151;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+}
+
+/* HEADER + FOOTER */
+header,footer{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:16px 32px;
+  background:rgba(255,255,255,0.6);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(255,255,255,0.4);
+}
+
+footer{
+  border-top:1px solid rgba(255,255,255,0.4);
+  border-bottom:none;
+}
+
+/* NAV */
+nav a{
+  margin:0 14px;
+  color:#6b7280;
+  text-decoration:none;
+  font-weight:500;
+  transition:0.3s;
+}
+
+nav a:hover{
+  color:#ec4899;
+}
+
+/* BUTTONS */
+button{
+  background:linear-gradient(135deg,#fb7185,#ec4899);
+  border:none;
+  padding:10px 20px;
+  border-radius:999px;
+  color:white;
+  cursor:pointer;
+  font-weight:600;
+  letter-spacing:0.3px;
+  box-shadow:0 6px 18px rgba(236,72,153,0.35);
+  transition:all 0.25s ease;
+}
+
+button:hover{
+  transform:translateY(-2px) scale(1.04);
+  box-shadow:0 10px 28px rgba(236,72,153,0.5);
+}
+
+/* CONTAINER */
+.container{
+  flex:1;
+  padding:40px 30px;
+}
+
+/* SECTIONS */
 .section{display:none}
 .section.active{display:block}
-.hero{text-align:center;margin-top:50px}
-.hero h1{font-size:36px;margin-bottom:10px}
-.hero p{opacity:0.8;margin-bottom:20px;font-size:18px}
 
-/* Features Section */
-.feature-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:25px;margin-top:30px}
-.feature-card{background:rgba(255,255,255,0.05);padding:20px;border-radius:20px;backdrop-filter:blur(15px);text-align:center;transition:0.3s;display:flex;flex-direction:column;align-items:center}
-.feature-card img{width:100%;height:180px;object-fit:cover;border-radius:15px;margin-bottom:15px}
-.feature-card h3{font-size:20px;margin-bottom:10px}
-.feature-card p{opacity:0.8;font-size:16px}
-.feature-card:hover{transform:translateY(-5px) scale(1.03)}
+/* HERO */
+.hero{
+  text-align:center;
+  margin-top:60px;
+}
 
-.steps{display:flex;flex-wrap:wrap;justify-content:space-around;margin-top:40px}
-.step{flex:1 1 200px;background:rgba(255,255,255,0.05);margin:10px;padding:20px;border-radius:15px;text-align:center}
+.hero h1{
+  font-size:40px;
+  font-weight:700;
+  color:#be185d;
+  letter-spacing:-0.5px;
+}
 
-/* Learn Section */
-#lesson-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;margin-top:20px}
-#lesson-grid .card{background:rgba(255,255,255,0.08);padding:15px;border-radius:15px;text-align:center;transition:0.3s;display:flex;flex-direction:column;align-items:center}
-#lesson-grid .card img{width:100%;border-radius:15px;margin-bottom:10px}
-#lesson-grid .card button{margin-top:10px;width:90%;padding:8px}
+.hero p{
+  opacity:0.85;
+  margin:18px 0;
+  font-size:18px;
+}
 
-/* Progress bar */
-.progress-bar{background:#1e293b;border-radius:20px;overflow:hidden;margin-top:10px}
-.progress-fill{height:10px;background:linear-gradient(90deg,#38bdf8,#6366f1);width:0%;transition:width 0.5s}
+/* FEATURE GRID */
+.feature-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:26px;
+  margin-top:40px;
+}
 
-/* Chat Section */
-.chat-box{width:100%;max-width:600px;height:300px;overflow-y:auto;background:rgba(255,255,255,0.05);padding:15px;border-radius:15px;margin-bottom:10px;display:flex;flex-direction:column;gap:5px}
-.chat-msg{padding:8px 12px;border-radius:10px;max-width:80%}
-.chat-msg.user{align-self:flex-end;background:#38bdf8;color:#0f172a}
-.chat-msg.bot{align-self:flex-start;background:#6366f1}
+/* FEATURE CARD */
+.feature-card{
+  background:rgba(255,255,255,0.7);
+  padding:22px;
+  border-radius:24px;
+  backdrop-filter:blur(18px);
+  text-align:center;
+  box-shadow:0 12px 30px rgba(236,72,153,0.18);
+  transition:0.3s;
+  border:1px solid rgba(255,255,255,0.5);
+}
 
-/* Input */
-input{padding:10px;border-radius:10px;border:none;width:70%;margin-right:10px}
-.feedback{margin-top:10px;opacity:0.8}
-.stat{margin:10px 0}
+.feature-card img{
+  width:100%;
+  height:180px;
+  object-fit:cover;
+  border-radius:18px;
+  margin-bottom:15px;
+  transition:0.3s;
+}
 
-/* Contact Form */
-.contact-form input,.contact-form textarea{width:100%;padding:10px;border-radius:10px;border:none;margin-bottom:10px}
-.contact-form button{margin-top:5px}
+.feature-card:hover{
+  transform:translateY(-8px) scale(1.03);
+  box-shadow:0 18px 40px rgba(236,72,153,0.25);
+}
 
-/* Auth Modal */
-#auth-modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);justify-content:center;align-items:center}
-#auth-modal div{background:#1e293b;padding:30px;border-radius:15px;width:320px;color:white;position:relative}
-#auth-modal span{position:absolute;top:10px;right:15px;cursor:pointer;font-weight:bold}
-#auth-modal input{width:100%;padding:8px;margin-bottom:10px;border-radius:8px;border:none}
-#auth-modal button{width:100%;padding:10px;border-radius:10px;border:none;margin-top:5px;background:linear-gradient(135deg,#38bdf8,#6366f1);color:white;cursor:pointer;font-weight:500}
+.feature-card:hover img{
+  transform:scale(1.06);
+}
+
+/* LESSON CARDS */
+#lesson-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:22px;
+  margin-top:25px;
+}
+
+#lesson-grid .card{
+  background:rgba(255,255,255,0.75);
+  padding:16px;
+  border-radius:20px;
+  text-align:center;
+  box-shadow:0 10px 24px rgba(236,72,153,0.18);
+  transition:0.3s;
+  border:1px solid rgba(255,255,255,0.4);
+}
+
+#lesson-grid .card img{
+  width:100%;
+  height:160px;
+  object-fit:cover;
+  border-radius:14px;
+  margin-bottom:10px;
+}
+
+#lesson-grid .card:hover{
+  transform:translateY(-6px) scale(1.02);
+}
+
+/* PROGRESS */
+.progress-bar{
+  background:#fce7f3;
+  border-radius:20px;
+  overflow:hidden;
+  margin-top:12px;
+}
+
+.progress-fill{
+  height:10px;
+  background:linear-gradient(90deg,#fb7185,#ec4899);
+}
+
+/* CHAT */
+.chat-box{
+  width:100%;
+  max-width:600px;
+  height:300px;
+  overflow-y:auto;
+  background:rgba(255,255,255,0.75);
+  padding:15px;
+  border-radius:18px;
+  box-shadow:0 10px 24px rgba(236,72,153,0.15);
+}
+
+/* CHAT MSG */
+.chat-msg{
+  padding:10px 14px;
+  border-radius:14px;
+  margin:6px 0;
+  max-width:80%;
+}
+
+.chat-msg.user{
+  background:#ec4899;
+  color:white;
+  margin-left:auto;
+}
+
+.chat-msg.bot{
+  background:#fce7f3;
+  color:#831843;
+}
+
+/* INPUT */
+input, textarea{
+  padding:10px 12px;
+  border-radius:12px;
+  border:1px solid rgba(0,0,0,0.05);
+  background:rgba(255,255,255,0.85);
+  outline:none;
+  transition:0.2s;
+}
+
+input:focus, textarea:focus{
+  border-color:#ec4899;
+  box-shadow:0 0 0 2px rgba(236,72,153,0.15);
+}
+
+/* AUTH MODAL FIX */
+#auth-modal{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  display:none;
+  justify-content:center;
+  align-items:center;
+  background:rgba(0,0,0,0.4);
+  z-index:1000;
+}
+
+/* MODAL CARD */
+#auth-modal div{
+  background:linear-gradient(135deg,#fff1f5,#ffe4ec);
+  padding:30px 25px;
+  border-radius:20px;
+  width:320px;
+  color:#831843;
+  box-shadow:0 20px 50px rgba(0,0,0,0.25);
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  position:relative;
+}
+
+/* CLOSE BUTTON */
+#close-modal{
+  position:absolute;
+  top:10px;
+  right:15px;
+  font-size:22px;
+  cursor:pointer;
+  color:#9ca3af;
+}
+
+#close-modal:hover{
+  color:#ec4899;
+}
+
+/* TITLE */
+#auth-modal h2{
+  text-align:center;
+  margin-bottom:5px;
+}
+
+/* INPUTS */
+#auth-modal input{
+  width:100%;
+}
+
+/* SUBMIT BUTTON */
+#auth-submit{
+  width:100%;
+  margin-top:5px;
+}
+
+/* TOGGLE TEXT */
+#toggle-auth{
+  color:#ec4899;
+  font-weight:600;
+}
+
+#toggle-auth:hover{
+  text-decoration:underline;
+}
+
+/* ERROR TEXT */
+#auth-error{
+  text-align:center;
+}
+/* SMALL TEXT */
+p{
+  line-height:1.5;
+}
+
+h1{
+  margin-bottom:10px;
+}
+/* CONTACT FORM - MODERN VERTICAL */
+.contact-form{
+  display:flex;
+  flex-direction:column;
+  gap:15px;
+  max-width:500px;
+  margin-top:20px;
+}
+
+/* Inputs full width */
+.contact-form input,
+.contact-form textarea{
+  width:100%;
+  padding:12px 14px;
+  border-radius:12px;
+  border:1px solid rgba(0,0,0,0.05);
+  background:rgba(255,255,255,0.85);
+  font-size:14px;
+  transition:0.25s;
+}
+
+/* Focus effect */
+.contact-form input:focus,
+.contact-form textarea:focus{
+  border-color:#ec4899;
+  box-shadow:0 0 0 2px rgba(236,72,153,0.15);
+  outline:none;
+}
+
+/* Textarea size */
+.contact-form textarea{
+  height:120px;
+  resize:none;
+}
+
+/* Button full width */
+.contact-form button{
+  width:100%;
+  padding:12px;
+  font-size:15px;
+} 
+/* STEPS FIX */
+.steps{
+  display:flex;
+  justify-content:center;
+  gap:25px;
+  margin-top:40px;
+  flex-wrap:wrap;
+}
+
+.step{
+  background:rgba(255,255,255,0.7);
+  padding:18px 25px;
+  border-radius:18px;
+  font-weight:600;
+  box-shadow:0 8px 20px rgba(236,72,153,0.15);
+  transition:0.3s;
+  border:1px solid rgba(255,255,255,0.4);
+}
+
+.step:hover{
+  transform:translateY(-5px);
+  box-shadow:0 12px 30px rgba(236,72,153,0.25);
+}
+/* LESSON CARD WRAPPER */
+.card{
+  background:transparent;
+  padding:0;
+  box-shadow:none;
+}
+
+/* NEW CARD */
+.lesson-card{
+  background:linear-gradient(135deg,#fff1f5,#ffe4ec);
+  border-radius:20px;
+  overflow:hidden;
+  box-shadow:0 10px 25px rgba(0,0,0,0.15);
+  transition:0.3s;
+}
+
+.lesson-card:hover{
+  transform:translateY(-6px);
+}
+
+.lesson-img {
+  width: 100%;
+  height: auto;           /* height adjusts automatically */
+  object-fit: contain;     /* full image visible */
+  display: block;
+  background: #fff1f5;
+  padding: 10px;
+  box-sizing: border-box;
+  border-bottom: 2px solid #f9a8d4;
+  max-width: 100%;
+}
+/* CONTENT */
+.lesson-content{
+  padding:15px;
+  color:#831843;
+}
+
+.lesson-content h3{
+  margin-bottom:5px;
+}
+
+/* TEXT STYLING */
+.phrase{
+  font-weight:600;
+  color:#be185d;
+}
+
+.meaning{
+  font-size:14px;
+  opacity:0.8;
+}
+
+/* BUTTON */
+.lesson-content button{
+  margin-top:10px;
+  width:100%;
+}
+
+/* COMPLETED BUTTON */
+button.done{
+  background:#9ca3af;
+  cursor:not-allowed;
+}
 </style>
 </head>
+
 <body>
 
 <header>
-  <div style="font-weight:600;font-size:20px;">🎮 GenZlingo</div>
+  <div style="font-weight:700;font-size:20px;">🎮 GenZlingo</div>
+
   <nav>
     <a onclick="showSection('home')">Home</a>
     <a onclick="showSection('learn')">Learn</a>
@@ -76,12 +452,17 @@ input{padding:10px;border-radius:10px;border:none;width:70%;margin-right:10px}
     <a onclick="showSection('about')">About Us</a>
     <a onclick="showSection('contact')">Contact</a>
   </nav>
+
   <select id="language-select">
     <option value="en">English</option>
     <option value="es">Spanish</option>
   </select>
+
   <button id="auth-btn">Login / Register</button>
+  <div id="google_translate_element"></div>
 </header>
+
+
 
 <!-- Auth Modal -->
 <div id="auth-modal">
@@ -109,17 +490,17 @@ input{padding:10px;border-radius:10px;border:none;width:70%;margin-right:10px}
 
     <div class="feature-grid" id="feature-cards">
       <div class="feature-card">
-        <img alt="Feature 1" src="https://i.imgur.com/1Rj1B7G.png">
+        <img alt="Feature 1" src="Feature1.png">
         <h3 id="feature1">Meme-based Lessons 😂</h3>
         <p>Learn vocabulary and phrases using fun memes that stick.</p>
       </div>
       <div class="feature-card">
-        <img alt="Feature 2" src="https://i.imgur.com/V9p5GyD.png">
+        <img alt="Feature 2" src="Feature2.png">
         <h3 id="feature2">Conversation Simulations 💬</h3>
         <p>Practice real-life conversations with interactive AI dialogues.</p>
       </div>
       <div class="feature-card">
-        <img alt="Feature 3" src="https://i.imgur.com/tI8hbHt.png">
+        <img alt="Feature 3" src="Feature3.png">
         <h3 id="feature3">Gamified Progress 🏆</h3>
         <p>Track your XP, levels, and streaks to stay motivated every day.</p>
       </div>
@@ -234,16 +615,28 @@ toggleAuth.onclick = () => {
 }
 
 authSubmit.onclick = async () => {
-  const email = authEmail.value;
-  const password = authPassword.value;
-  const username = authUsername.value;
+  const email = authEmail.value.trim();
+  const password = authPassword.value.trim();
+  const username = authUsername.value.trim();
+
+  authError.innerText = '';
+
+  if(!email || !password){
+    authError.innerText = "Email and password required";
+    return;
+  }
+
   try {
     const res = await fetch(`${BASE_URL}/api/auth/${isLogin ? 'login' : 'register'}`, {
       method: 'POST',
       headers: {'Content-Type':'application/json'},
       body: JSON.stringify(isLogin ? {email,password} : {username,email,password})
     });
+
     const data = await res.json();
+
+    console.log("LOGIN RESPONSE:", data); // 👈 ADD THIS
+
     if(res.ok){
       localStorage.setItem('token', data.token);
       localStorage.setItem('user', JSON.stringify(data.user));
@@ -251,18 +644,66 @@ authSubmit.onclick = async () => {
       updateProfileUI();
       alert(isLogin ? 'Logged in!' : 'Registered!');
       loadLessons();
-    } else { authError.innerText = data.error; }
-  } catch(err){ console.error(err); authError.innerText = 'Server error'; }
+    } else { 
+      authError.innerText = data.error; 
+    }
+
+  } catch(err){ 
+    console.error(err); 
+    authError.innerText = 'Server error'; 
+  }
 }
 
 // --- Profile UI ---
 function updateProfileUI(){
   const user = JSON.parse(localStorage.getItem('user'));
-  if(!user) return;
+  const authBtn = document.getElementById('auth-btn');
+
+  if(!user){
+    // Not logged in
+    authBtn.innerText = "Login / Register";
+
+    document.getElementById('profile').innerHTML = `
+      <h1>Your Profile 👤</h1>
+      <p>Please login or create an account to view your profile.</p>
+      <button onclick="document.getElementById('auth-modal').style.display='flex'">
+        Login / Register
+      </button>
+    `;
+    return;
+  }
+
+  // Logged in
+  authBtn.innerText = "Logout";
+
+  document.getElementById('profile').innerHTML = `
+    <h1 id="profile-title">Your Profile 👤</h1>
+    <p>XP: <span id="profile-xp">0</span></p>
+    <p>Level: <span id="profile-level">1</span></p>
+    <p>Streak Days: <span id="profile-streak">0</span></p>
+    <p>Completed Lessons: <span id="profile-lessons">0</span></p>
+  `;
+
   document.getElementById('profile-xp').innerText = user.xp;
   document.getElementById('profile-level').innerText = Math.floor(user.xp/100)+1;
-  document.getElementById('profile-streak').innerText = user.streak;
+  document.getElementById('profile-streak').innerText = user.streak || 0;
 }
+
+  // Logged in
+  authBtn.onclick = () => {
+  const user = JSON.parse(localStorage.getItem('user'));
+
+  if(user){
+    // Logout
+    localStorage.removeItem('user');
+    localStorage.removeItem('token');
+    updateProfileUI();
+    loadLessons();
+    alert('Logged out!');
+  } else {
+    authModal.style.display = 'flex';
+  }
+};
 
 // --- Load Lessons ---
 async function loadLessons(){
@@ -283,13 +724,23 @@ async function loadLessons(){
     lessons.forEach(lesson=>{
       const card=document.createElement('div'); card.className='card';
       card.innerHTML=`
-        <img src="${lesson.meme_url||'https://i.imgur.com/placeholder.png'}" alt="${lesson.title}">
-        <h3>${lesson.title}</h3>
-        <p>${lesson.phrase} - ${lesson.meaning}</p>
-        <button ${lesson.completed?'disabled style="opacity:0.5;"':''} onclick="completeLesson(${lesson.id})">
-          ${lesson.completed?'Completed':'Complete Lesson'}
-        </button>
-      `;
+  <div class="lesson-card">
+    <img src="${lesson.meme_url || 'https://i.imgur.com/placeholder.png'}" class="lesson-img"/>
+
+    <div class="lesson-content">
+      <h3>${lesson.title}</h3>
+      <p class="phrase">${lesson.phrase}</p>
+      <p class="meaning">${lesson.meaning}</p>
+
+      <button 
+        ${lesson.completed ? 'disabled class="done"' : ''} 
+        onclick="completeLesson(${lesson.id})"
+      >
+        ${lesson.completed ? '✅ Completed' : `Complete +${lesson.xp_reward} XP`}
+      </button>
+    </div>
+  </div>
+`;
       grid.appendChild(card);
       if(lesson.completed){totalXP+=lesson.xp_reward; completedLessons++;}
     });
@@ -320,34 +771,52 @@ async function completeLesson(lessonId){
 }
 
 // --- Practice Chat ---
-let practiceXP=0;
+let practiceXP = 0;
+
 async function sendMsg(){
   const chat = document.getElementById('chat');
   const input = document.getElementById('userInput'); 
   if(input.value.trim() === '') return;
 
+  const lang = document.getElementById('language-select').value;
+
   const userMsg = document.createElement('div'); 
   userMsg.className = 'chat-msg user'; 
-  userMsg.innerText = input.value;
+  userMsg.innerText = "You: " + input.value;
   chat.appendChild(userMsg);
 
   try {
     const token = localStorage.getItem('token');
+
     const res = await fetch(`${BASE_URL}/api/chat`, {
       method: 'POST',
       headers: { 
         'Content-Type': 'application/json',
         'Authorization': 'Bearer ' + token
       },
-      body: JSON.stringify({ message: input.value })
+      body: JSON.stringify({ 
+        message: input.value,
+        language: lang
+      })
     });
 
     const data = await res.json();
+    console.log("API RESPONSE:", data);
+
     const botMsg = document.createElement('div'); 
     botMsg.className = 'chat-msg bot'; 
-    botMsg.innerText = data.reply || "Sorry, I didn't get that.";
-
+    botMsg.innerText = "AI: " + (data.reply || "Sorry, I didn't get that.");
     chat.appendChild(botMsg);
+
+    // 🔊 Voice
+    if ('speechSynthesis' in window) {
+      const utter = new SpeechSynthesisUtterance(data.reply);
+
+      if(lang === 'fr') utter.lang = 'fr-FR';
+      if(lang === 'es') utter.lang = 'es-ES';
+
+      speechSynthesis.speak(utter);
+    }
 
     practiceXP += 5; 
     document.getElementById('practice-xp').innerText = practiceXP;
@@ -356,7 +825,7 @@ async function sendMsg(){
     console.error(err);
     const botMsg = document.createElement('div'); 
     botMsg.className = 'chat-msg bot'; 
-    botMsg.innerText = 'Server error. Try again later.';
+    botMsg.innerText = 'AI: Server error. Try again later.';
     chat.appendChild(botMsg);
   }
 
@@ -367,39 +836,17 @@ async function sendMsg(){
 // --- Initialize ---
 updateProfileUI();
 loadLessons();
-const translations = {
-  en: {
-    homeTitle: "Learn languages through memes & real conversations",
-    homeSubtitle: "Fun, gamified learning experience",
-    learnTitle: "Choose a Lesson",
-    practiceTitle: "Practice Conversation 💬",
-    profileTitle: "Your Profile 👤",
-    aboutTitle: "About Us",
-    contactTitle: "Contact Us"
-  },
-  es: {
-    homeTitle: "Aprende idiomas con memes y conversaciones reales",
-    homeSubtitle: "Experiencia divertida y gamificada",
-    learnTitle: "Elige una lección",
-    practiceTitle: "Practicar conversación 💬",
-    profileTitle: "Tu perfil 👤",
-    aboutTitle: "Sobre nosotros",
-    contactTitle: "Contáctanos"
-  }
-};
-
-document.getElementById('language-select').addEventListener('change', (e) => {
-  const lang = e.target.value;
-
-  document.getElementById('home-title').innerText = translations[lang].homeTitle;
-  document.getElementById('home-subtitle').innerText = translations[lang].homeSubtitle;
-  document.getElementById('learn-title').innerText = translations[lang].learnTitle;
-  document.getElementById('practice-title').innerText = translations[lang].practiceTitle;
-  document.getElementById('profile-title').innerText = translations[lang].profileTitle;
-  document.getElementById('about-title').innerText = translations[lang].aboutTitle;
-  document.getElementById('contact-title').innerText = translations[lang].contactTitle;
-});
+</script>
+<script>
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage: 'en',
+    includedLanguages: 'es,fr,de,hi',
+    layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+  }, 'google_translate_element');
+}
 </script>
 
+<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>
